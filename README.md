@@ -10,6 +10,44 @@ The project includes:
 - 🎨 Modern Desktop GUI Version (`gui_app.py`)
 
 ---
+## 🔍 How It Works
+
+### Encryption
+
+1. Select or drag an image into the application.
+2. Choose **Encryption Mode**.
+3. Enter a password.
+4. The image pixel data is encrypted using AES-256 CTR.
+5. An HMAC-SHA256 authentication value is generated.
+6. The encrypted image is saved in the `PixelVault_Output` folder.
+
+### Decryption
+
+1. Select the encrypted image.
+2. Choose **Decryption Mode**.
+3. Enter the correct password.
+4. The application verifies the authentication data.
+5. If the password is correct, the image is decrypted.
+6. The original image data is restored.
+
+If an incorrect password is entered, the application stops the process and displays:
+
+**Incorrect password or authentication failed**
+---
+## 🔐 Encryption & Security
+
+Pixel Vault uses **AES-256 in CTR mode** to generate a secure keystream for encrypting image pixel data.
+
+Separate keys are derived from the user's password for:
+
+- Encryption
+- Authentication
+
+The project also uses **Encrypt-then-MAC** with HMAC-SHA256 to verify the encrypted image before decryption.
+
+This prevents incorrect passwords from silently producing corrupted output.
+
+---
 
 ## ✨ Features
 
@@ -55,33 +93,31 @@ PixelEncryption/
 
 ## ⚙️ Installation & Setup
 
-### GUI Version
+### Install dependencies for the GUI version:
 
 ```bash
 pip install pillow cryptography customtkinter tkinterdnd2
+```
+
+Run the GUI application:
+
+```bash
 python gui_app.py
 ```
 
-### Command-Line Version
+### Install dependencies for the Command-Line version:
 
 ```bash
 pip install pillow cryptography
+```
+
+Run the CLI application:
+
+```bash
 python encrypt.py
 ```
 
----
 
-## 🔍 How It Works
-
-1. Select or drag an image into the application.
-2. Choose **Encryption** or **Decryption** mode.
-3. Enter a password.
-4. The image pixel data is processed securely.
-5. The result is displayed and saved in the `PixelVault_Output` folder.
-
-If an incorrect password is entered during decryption, the application stops the process and displays an authentication error.
-
----
 
 ## 📌 Internship Task
 
@@ -105,11 +141,6 @@ Through this project, I explored:
 - GUI development
 - Drag-and-drop functionality
 - Background threading
-
----
-⭐ Developed as part of the **Prodigy InfoTech Cyber Security Internship – Task 02: Image Encryption Tool**.
-
-Computer Engineering Student | Cybersecurity Enthusiast
 
 ---
 
